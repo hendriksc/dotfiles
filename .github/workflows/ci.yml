@@ -8,18 +8,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo with submodules
+      - name: Checkout repository (without submodules)
         uses: actions/checkout@v4
         with:
-          submodules: 'recursive'
+          submodules: false
 
-      - name: setup ssh access to private dotfiles
+      - name: Set up SSH access for private submodule
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DOTFILES_CI_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+          # Rewrite GitHub URLs to use SSH instead of HTTPS
           git config --global url."git@github.com:".insteadOf "https://github.com/"
+
+      - name: Manually init submodules
+        run: git submodule update --init --recursive
       - run: |
           mkdir -p ~/dotfiles-install-dir
       - run: |
