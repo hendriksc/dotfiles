@@ -15,7 +15,7 @@
 
 - shell:
   - |
-    if [ -z "$CI" ]; then
-      git submodule update --init --recursive
-    fi
+      if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ]; then
+      git submodule update --init --recursive || true
+      fi
 
