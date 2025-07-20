@@ -13,3 +13,9 @@ My local dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot)
 # clone and link dotfiles
 git clone https://github.com/hendriksc/dotfiles ~/.dotfiles && cd ~/.dotfiles && ./install
 ```
+
+## Private Submodule
+
+This repo includes a private submodule at `.private/` for machine-specific and secret data.
+
+If you don't have access to it and want to try my other dotfiles, you can safely ignore any Git warnings - the public dotfiles work fine without it.
