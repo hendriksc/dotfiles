@@ -5,7 +5,7 @@
 [![XDG Compliancy](https://img.shields.io/badge/%E2%9C%94%20Compliancy-XDG%20Base%20Directory%20Standard-limegreen)](#)
 
 
-My local dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot). I follow the XDG Base Directory Standard for a clean, minimal `$HOME` and install my used packages using `homebrew / linuxbrew` under `$HOME/.local/share'.
+My local dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot). I follow the XDG Base Directory Specification for a clean, minimal `$HOME` and install my used packages using `homebrew/linuxbrew` under `$HOME/.local/share`.
 
 ## Usage
 
@@ -13,3 +13,9 @@ My local dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot)
 # clone and link dotfiles
 git clone https://github.com/hendriksc/dotfiles ~/.dotfiles && cd ~/.dotfiles && ./install
 ```
+
+## Private Submodule
+
+This repo includes a private submodule at `.private/` for machine-specific and secret data.
+
+If you don't have access to it and want to try my other dotfiles, you can safely ignore any Git warnings - the public dotfiles work fine without it.
