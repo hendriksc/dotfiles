@@ -12,4 +12,21 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
+git config --file .gitmodules --get-regexp path | awk '{ print $2 }' | while read -r SUB; do
+    if [ "$SUB" = "$DOTBOT_DIR" ]; then
+        continue
+    fi
+
+    if [ -d "$SUB/.git" ] || [ -f ".git/modules/$SUB/config" ]; then
+        echo "Updating submodule: $SUB"
+        git -C "$SUB" submodule sync --quiet --recursive || true
+        git submodule update --init --recursive "$SUB" || true
+    else
+        echo "Skipping submodule: $SUB (not cloned)"
+    fi
+done
+
+# Run Dotbot
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
