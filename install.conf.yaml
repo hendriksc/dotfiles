@@ -4,11 +4,8 @@
 
 - clean: ['~']
 
-- link:
-
 - create:
     - ~/downloads
-    - ~/.vim/undo-history
 
 - shell:
   - |
