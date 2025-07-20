@@ -14,5 +14,8 @@
     - ~/.vim/undo-history
 
 - shell:
-  - [bash -c 'if [ -z "$CI" ]; then git submodule update --init --recursive; fi', Installing submodules]
+  - |
+    if [ -z "$CI" ]; then
+      git submodule update --init --recursive
+    fi
 
